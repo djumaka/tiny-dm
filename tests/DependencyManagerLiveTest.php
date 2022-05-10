@@ -1,25 +1,18 @@
 <?php
 
-namespace DependencyManager\Tests;
+namespace Djumaka\TinyDm\Tests;
 
 require_once 'src/DependencyManager.php';
 require_once 'tests/DummyTestClasses.php';
 
-/**
- * Created by PhpStorm.
- * User: boyan
- * Date: 8/30/2018
- * Time: 9:11 AM
- */
-
-use DependencyManager\DependencyManager;
+use Djumaka\TinyDm\DependencyManager;
 use PHPUnit\Framework\TestCase;
 
 class DependencyManagerLiveTest extends TestCase
 {
-    private $di;
+    private DependencyManager $di;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->di = new DependencyManager([], true);
     }

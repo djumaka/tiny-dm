@@ -1,0 +1,25 @@
+{
+    "name": "djumaka/tiny-dm",
+    "description": "A tiny and simple DI Dependency Manager. No service containers, no complexity.",
+    "homepage": "https://github.com/djumaka/tiny-dm",
+    "type": "library",
+    "keywords": ["dependency", "DI", "injection"],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Djumaka\\TinyDm\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Boyan Djumakov",
+            "email": "bdjumakov@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">= 7.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}

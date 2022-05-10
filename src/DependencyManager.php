@@ -1,12 +1,12 @@
 <?php
 
-namespace DependencyManager;
+namespace Djumaka\TinyDm;
 
 class DependencyManager
 {
-    private $classes;
-    private $live;
-    private $dependencyTree = [];
+    private array $classes;
+    private bool $live;
+    private array $dependencyTree = [];
 
     /**
      * DependencyManager constructor.
@@ -16,7 +16,7 @@ class DependencyManager
      *
      * @throws \Exception
      */
-    public function __construct(Array $classList, $live = false)
+    public function __construct(Array $classList, bool $live = false)
     {
         if ( ! $live && empty($classList)) {
             throw new \InvalidArgumentException('Missing class dependency map.');
@@ -28,14 +28,14 @@ class DependencyManager
 
 
     /**
-     * Create instance of class, recursing into its dependencies
+     * Create instance of class, diving recursively into its dependencies
      *
-     * @param $className
+     * @param string $className
      *
      * @return object
      * @throws \Exception
      */
-    public function createInstance($className)
+    public function createInstance(string $className): object
     {
         if ( ! $this->live && ! isset($this->classes[$className])) {
             throw new \InvalidArgumentException('Class not found ' . $className);
@@ -46,7 +46,7 @@ class DependencyManager
 
         if (in_array($className, $this->dependencyTree, true)) {
             throw new \InvalidArgumentException('Circular reference detected:'
-                                                . "\n\t{$className}\n\t"
+                                                . "\n\t$className\n\t"
                                                 . implode("\n\t", $this->dependencyTree));
         }
 
@@ -59,14 +59,14 @@ class DependencyManager
 
 
     /**
-     * Define constructor dependencies if autowire is used.
+     * Define constructor dependencies if auto-wire is used.
      *
-     * @param $className
+     * @param string $className
      *
      * @return \ReflectionClass
      * @throws \ReflectionException
      */
-    protected function autoWireArgumentsAndGetClassReflection($className): \ReflectionClass
+    protected function autoWireArgumentsAndGetClassReflection(string $className): \ReflectionClass
     {
         $classReflection = new \ReflectionClass($className);
         if ($this->live) {
@@ -90,12 +90,12 @@ class DependencyManager
     /**
      * Resolve all constructor dependencies.
      *
-     * @param $className
+     * @param string $className
      *
      * @return array
      * @throws \Exception
      */
-    private function resolveDependencies($className): array
+    private function resolveDependencies(string $className): array
     {
         $constructorParams = [];
 

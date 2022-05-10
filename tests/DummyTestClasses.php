@@ -1,12 +1,6 @@
 <?php
 
-namespace DependencyManager\Tests;
-/**
- * Created by PhpStorm.
- * User: boyan
- * Date: 8/30/2018
- * Time: 8:59 AM
- */
+namespace Djumaka\TinyDm\Tests;
 
 class BasicDummy
 {

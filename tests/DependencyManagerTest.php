@@ -1,25 +1,18 @@
 <?php
 
-namespace DependencyManager\Tests;
+namespace Djumaka\TinyDm\Tests;
 
 require_once 'src/DependencyManager.php';
 require_once 'tests/DummyTestClasses.php';
 
-/**
- * Created by PhpStorm.
- * User: boyan
- * Date: 8/30/2018
- * Time: 7:24 AM
- */
-
-use \PHPUnit\Framework\Testcase;
-use DependencyManager\DependencyManager;
+use Djumaka\TinyDm\DependencyManager;
+use PHPUnit\Framework\TestCase;
 
 class DependencyManagerTest extends TestCase
 {
     private $di;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $dependencies = [
             BasicDummy::class   => [],
@@ -31,7 +24,7 @@ class DependencyManagerTest extends TestCase
         $this->di = new DependencyManager($dependencies);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->di);
     }

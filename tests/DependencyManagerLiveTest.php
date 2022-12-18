@@ -17,6 +17,11 @@ class DependencyManagerLiveTest extends TestCase
         $this->di = new DependencyManager([], true);
     }
 
+    /**
+     * @return void
+     * @throws \Exception
+     * @covers \Djumaka\TinyDm\DependencyManager
+     */
     public function testLiveDM(): void
     {
         $complexClass = $this->di->createInstance(ComplexDummy::class);
@@ -24,9 +29,25 @@ class DependencyManagerLiveTest extends TestCase
 
     }
 
+    /**
+     * @return void
+     * @throws \Exception
+     * @covers \Djumaka\TinyDm\DependencyManager
+     */
     public function testCircularReferenceException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->di->createInstance(CircularSecondClass::class);
+    }
+
+    /**
+     * @return void
+     * @throws \Exception
+     * @covers \Djumaka\TinyDm\DependencyManager
+     */
+    public function testConstructUnspecifiedParams()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $complexUndefinedDummy = $this->di->createInstance(ComplexUndefinedDummy::class);
     }
 }

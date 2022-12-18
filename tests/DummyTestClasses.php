@@ -13,6 +13,12 @@ class ComplexDummy {
     }
 }
 
+class ComplexUndefinedDummy {
+    public function __construct($basicClass)
+    {
+    }
+}
+
 class CircularBasicClass {
     public function __construct(CircularSecondClass $secondClass)
     {

@@ -29,21 +29,46 @@ class DependencyManagerTest extends TestCase
         unset($this->di);
     }
 
+    /**
+     * @return void
+     * @throws \Exception
+     * @covers \Djumaka\TinyDm\DependencyManager
+     */
     public function testConstructFailParams()
     {
         $this->expectException(\InvalidArgumentException::class);
         new DependencyManager([]);
     }
 
+    /**
+     * @return void
+     * @throws \Exception
+     * @covers \Djumaka\TinyDm\DependencyManager
+     */
     public function testCreateBasicClass()
     {
         $basicDummy = $this->di->createInstance(BasicDummy::class);
         $this->assertEquals(BasicDummy::class, get_class($basicDummy));
     }
 
+    /**
+     * @return void
+     * @throws \Exception
+     * @covers \Djumaka\TinyDm\DependencyManager
+     */
     public function testCreateComplexClass()
     {
         $complexDummy = $this->di->createInstance(ComplexDummy::class);
         $this->assertEquals(ComplexDummy::class, get_class($complexDummy));
+    }
+
+    /**
+     * @return void
+     * @covers \Djumaka\TinyDm\DependencyManager
+     */
+    public function testCreateInstanceUndefinedClass()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->di->createInstance(ComplexUndefinedDummy::class);
     }
 }

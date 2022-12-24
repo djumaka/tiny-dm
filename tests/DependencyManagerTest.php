@@ -36,7 +36,7 @@ class DependencyManagerTest extends TestCase
      */
     public function testConstructFailParams()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(\UnexpectedValueException::class);
         new DependencyManager([]);
     }
 

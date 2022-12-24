@@ -11,15 +11,15 @@ class DependencyManager
     /**
      * DependencyManager constructor.
      *
-     * @param array $classList
-     * @param bool $live
+     * @param array|null $classList
+     * @param bool|null $live
      *
-     * @throws \Exception
+     * @throws \UnexpectedValueException
      */
-    public function __construct(Array $classList, bool $live = false)
+    public function __construct(?array $classList = [], ?bool $live = false)
     {
         if ( ! $live && empty($classList)) {
-            throw new \InvalidArgumentException('Missing class dependency map.');
+            throw new \UnexpectedValueException('Missing class dependency map.');
         }
 
         $this->live    = $live;
